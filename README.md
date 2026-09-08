@@ -5,7 +5,7 @@ Para atividades avaliativas de poo ou para acompanhar a aula
 
 > **Disciplina:** Programação Orientada a Objetos  
 > **Tema Central:** Arquitetura em Camadas e Estruturação de Sistemas em POO  
-> **Linguagem:** Java *[ou C# / Python — ajuste se necessário]*  
+> **Linguagem:** Typescript*  
 
 ---
 
@@ -23,6 +23,6 @@ O sistema é organizado seguindo o modelo clássico de separação de responsabi
 
 ```text
 src/
- ├── presentation/    --> Camada de Apresentação (Interface com usuário / Menus / CLI)
- ├── domain/          --> Camada de Negócio (Entidades, Regras de Negócio e Interfaces)
- └── data/            --> Camada de Dados (Persistência, Repositórios e Banco de Dados)
+ ├── entities/    --> Camada de Apresentação (Interface com usuário / Menus / CLI)
+ ├── services/          --> Camada de Negócio (Entidades, Regras de Negócio e Interfaces)
+ └── repositories/            --> Camada de Dados (Persistência, Repositórios e Banco de Dados)
