@@ -20,7 +20,7 @@ export class Cardapio{
             throw new Error("Não há nenhum produto para colocar")
         }
 
-        const existCodProd: Produto | undefined = this._produtos.find(prod => prod.cod == produto.cod )
+        const existCodProd: Produto | undefined = this._produtos.find(prod => prod.codProd == produto.codProd)
         
         if(existCodProd){
             throw new Error("Existe um produto como esse código")
