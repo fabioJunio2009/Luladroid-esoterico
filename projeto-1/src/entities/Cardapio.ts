@@ -1,17 +1,20 @@
 import { Produto } from "./Produto.ts";
 
 export class Cardapio{
-    private _produtos : Produto[]
 
-    private static _qtnd_produto : number = 0;
+    private _produtos : Produto[]
+    private _qntdProduto : number = 0;
     
     constructor(){
         this._produtos = []
+        this._qntdProduto = 0 
     }
 
     public get produtos(){return this._produtos}
-    
-    public addProdCardapio(produto: Produto):void {
+    public get qntdProduto(){return this._qntdProduto}
+
+
+    public addProdCardapio(produto: Produto) : void {
         
         if(!produto){
             throw new Error("Não há nenhum produto para colocar")
@@ -19,29 +22,42 @@ export class Cardapio{
 
         const existCodProd: Produto | undefined = this._produtos.find(prod => prod.cod == produto.cod )
         
-        if(!existCodProd){
-            this.produtos.push(produto)
-            Cardapio.aumentarQntdProd()
-        }
-
-        else{
+        if(existCodProd){
             throw new Error("Existe um produto como esse código")
         }
-    }
-    remvProdCardapio(produto: Produto): string | void{
-        const prod: Produto | undefined = this.produtos.find(prodt => prodt.cod == produto.cod)
-        if(!prod) return "Não existe esse produto no cardápio"
-        
 
-    
+        this.aumentarQntdProd()
+        this.produtos.push(produto)
+        
+    }
+    public remvProdCardapio(codProd: string): string | void{
+        let indexProd: number = this.produtos.findIndex(prod => prod.codProd == codProd)
+        if(indexProd === -1){
+            throw new Error("Não existe um produto com esse código")
+        }
+
+        this._produtos.splice(indexProd, 1)
+        this.baixarQntdProd()
+        
+    }
+
+    public buscarPorCod(codProd: string){
+        
+    }
+
+    public mostrarProdutos(){
+
+    }
+
+
+    private aumentarQntdProd(){
+        this._qntdProduto += 1
     }
     
-    private static aumentarQntdProd(){
-        this._qtnd_produto += 1
+    private baixarQntdProd(){
+        this._qntdProduto -= 1
     }
 
 
 
 }
-// add produto ao cardapio
-// remover produtio ao cardapio
