@@ -16,11 +16,10 @@ class CardapioService{
         cardapio.remvProdCardapio(codProd)
     }
 
-    public mostrarTodosProd(){
-
-
+    public mostrarProdutos(cardapio: Cardapio){
+        return cardapio.toString()
     }
-    public mostrarProduto(){
-        
+    public mostrarProduto(cardapio: Cardapio, codProd: string){
+        return cardapio.buscarProd(codProd)
     }
 }

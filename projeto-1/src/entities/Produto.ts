@@ -25,4 +25,7 @@ export class Produto{
         this.codProd = newCodProd;
     }
     
+    public toString(): string {
+        return `${this.codProd} - ${this.nome} - R$${this.preco}`
+    }
 }

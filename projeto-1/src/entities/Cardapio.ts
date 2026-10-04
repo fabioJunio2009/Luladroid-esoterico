@@ -31,6 +31,7 @@ export class Cardapio{
         
     }
     public remvProdCardapio(codProd: string): string | void{
+
         let indexProd: number = this.produtos.findIndex(prod => prod.codProd == codProd)
         if(indexProd === -1){
             throw new Error("Não existe um produto com esse código")
@@ -41,15 +42,16 @@ export class Cardapio{
         
     }
 
-    public buscarPorCod(codProd: string){
+    public buscarProd(codProd: string){
+
+        let prod: Produto|undefined = this.produtos.find(prod => prod.codProd == codProd)
+        if(!prod){
+            throw new Error("Não existe um produto com esse código")
+        }
+        return prod.toString()
         
     }
-
-    public mostrarProdutos(){
-
-    }
-
-
+    
     private aumentarQntdProd(){
         this._qntdProduto += 1
     }
@@ -58,6 +60,19 @@ export class Cardapio{
         this._qntdProduto -= 1
     }
 
+    public toString(): string {
+        let resultado = `--- CARDÁPIO---\n`;
 
+        if (this._produtos.length === 0) {
+            resultado += "O cardápio está vazio.";
+            return resultado;
+        }
+
+        this._produtos.forEach(produto => {
+            resultado += `${produto.toString()}\n`;
+        });
+
+        return resultado
+    }
 
 }
