@@ -1,8 +1,22 @@
 import { Produto } from "../entities/Produto.ts";
 
 export class ProdutoRepository{
-
+    
     private _produtos : Produto[] = []
+        
+    public listarProdutos(){return this._produtos}
+
+    public qntdProdutos(){return this._produtos.length}
+    
+    public listarProd(codProd: number){
+        
+        let prod: Produto|undefined = this._produtos.find(prod => prod.codProd == codProd)
+        if(!prod){
+            throw new Error("Não existe um produto com esse código")
+        }
+        return prod
+        
+    }
 
     public salvarProduto(produto: Produto) : void { 
         
@@ -19,6 +33,7 @@ export class ProdutoRepository{
         this._produtos.push(produto)
         
     }
+
     public removerProduto(codProd: number): void {
 
         let indexProd: number = this._produtos.findIndex(prod => prod.codProd == codProd)
@@ -30,22 +45,8 @@ export class ProdutoRepository{
         
     }
 
-    public ListarProd(codProd: number){
-        
-        let prod: Produto|undefined = this._produtos.find(prod => prod.codProd == codProd)
-        if(!prod){
-            throw new Error("Não existe um produto com esse código")
-        }
-        return prod
-        
-    }
-    
-    public ListarProdutos(){return this._produtos}
-
-    public qntdProdutos(){return this._produtos.length}
-
     public toString(){
-        let result = this._produtos.reduce((acumulador, prod) => acumulador + prod.toString(), "\n")
+        let result = this._produtos.reduce((acumulador, prod) => prod.toString() + acumulador, "\n")
         return result
     }
 

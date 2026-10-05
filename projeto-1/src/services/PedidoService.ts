@@ -2,31 +2,33 @@ import { Cliente } from "../entities/Cliente.ts";
 import { Produto } from "../entities/Produto.ts";
 import { Pedido } from "../entities/Pedido.ts";
 import { ItemPedido } from "../entities/ItemPedido.ts";
-import { ProdutoRepository } from "../repositories/ProdutoRepository.ts";
+import { PedidoRepository } from "../repositories/PedidoRepository.ts";
 
 export class PedidoService {
-    private produtoRepository: ProdutoRepository
+    private pedidoRepository: PedidoRepository
     
-    constructor(produtoRepository: ProdutoRepository){
-        this.produtoRepository = produtoRepository
+    constructor(pedidoRepository: PedidoRepository){
+        this.pedidoRepository = pedidoRepository
     }
 
-    criarPedido(cliente: Cliente, idPedido:string): Pedido {
-        return new Pedido(cliente, idPedido);
+    criarPedido(cliente: Cliente, idPedido:number): Pedido {
+        pedido = new Pedido(cliente, idPedido); 
+        this.pedidoRepository.adicionar(pedido);
+        return pedido
     }
 
     adicionarProduto(
-        pedido: Pedido,
-        produto: Produto,
+        idPedido: number,
+        codProd: number,
         quantidade: number,
-    ): void {
-        const item = new ItemPedido(produto, quantidade)
+    ): void {   
+        const item = new ItemPedido(codProd, quantidade)
         pedido.adicionarItem(item);
     }
 
     removerProduto(
         pedido: Pedido,
-        itemPedido: string
+        itemPedido: number
     ): void {
         pedido.removerItem(itemPedido);
     }

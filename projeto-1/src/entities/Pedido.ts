@@ -2,11 +2,12 @@ import { Cliente } from "./Cliente.ts"
 import { ItemPedido } from "./ItemPedido.ts"
 
 export class Pedido{
-    private _idPedido: string;
     private _cliente: Cliente;
     private _itemP: ItemPedido[];
     private _situacao: string;
-    constructor(cliente:Cliente, idPedido: string){
+    private _idPedido: number;
+    
+    constructor(cliente:Cliente, idPedido: number){
         this._cliente = cliente;
         this._itemP = []
         this._situacao = "aberto";
@@ -28,7 +29,7 @@ export class Pedido{
 
     }
 
-    removerItem(codProd:string){
+    removerItem(codProd:number){
         let index_itemP: number = this._itemP.findIndex(x => x.produto.codProd == codProd)
         if (index_itemP === -1){
             throw new Error("Nâo existe este item")
