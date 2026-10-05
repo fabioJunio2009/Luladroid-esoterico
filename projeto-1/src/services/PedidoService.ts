@@ -58,6 +58,11 @@ export class PedidoService {
         let pedido = this.pedidoRepository.buscarPorId(idPedido)
         pedido.cancelar();
     }
-
+    public buscarPedidoPorId(idPedido: number){
+        return this.pedidoRepository.buscarPorId(idPedido)
+    }
+    public buscarPedidos(){
+        return this.pedidoRepository.buscarPedidos()
+    }
 
 }
