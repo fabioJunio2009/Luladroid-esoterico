@@ -1,9 +1,9 @@
 export class Produto{
     private _nome: string;
     private _preco: number;
-    private _codProd: string;
+    private _codProd: number;
     
-    constructor(nome:string, preco:number, codProd: string){
+    constructor(nome:string, preco:number, codProd: number){
         this._nome = nome;
         this._preco = preco;
         this._codProd = codProd;
@@ -18,7 +18,7 @@ export class Produto{
             this._preco = preco
         }
     }
-    public set codProd(newCodProd: string){
+    public set codProd(newCodProd: number){
         if(!newCodProd){
             throw new Error("Insira um código!")
         }
