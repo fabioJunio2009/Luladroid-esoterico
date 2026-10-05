@@ -5,8 +5,8 @@ import { ItemPedido } from "../entities/ItemPedido.ts";
 
 export class PedidoService {
 
-    criarPedido(cliente: Cliente): Pedido {
-        return new Pedido(cliente);
+    criarPedido(cliente: Cliente, idPedido:string): Pedido {
+        return new Pedido(cliente, idPedido);
     }
 
     adicionarProduto(
@@ -22,8 +22,7 @@ export class PedidoService {
         pedido: Pedido,
         itemPedido: string
     ): void {
-        let oi = pedido
-        oi.removerItem(itemPedido);
+        pedido.removerItem(itemPedido);
     }
 
     alterarQuantidade(
