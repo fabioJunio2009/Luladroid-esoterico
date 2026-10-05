@@ -1,4 +1,4 @@
-import { Pedido } from '../entities/Pedido.ts';
+import { Pedido } from '../entities/Pedido';
 export class pedidoRepository{
     private pedidos: Pedido[] = [];
     
@@ -6,12 +6,13 @@ export class pedidoRepository{
         this.pedidos.push(pedido)
     };
 
-   public get Pedidos():any{
+    getPedidos():any{
         return(this.pedidos)
 
     };
 
-    listarSituacao(situacao: string): Pedido[] {
+      public listarSituacao(situacao:string):Pedido[] {
     return this.pedidos.filter((l) => l.situacao == situacao)
-};
+
+   }
 }
