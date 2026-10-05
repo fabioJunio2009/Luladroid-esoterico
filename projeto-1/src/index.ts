@@ -32,7 +32,8 @@ const cliente = new Cliente("gianloeps");
 // A partir daqui é da história HU6 até HU10
 
 const produtoRepository = new ProdutoRepository
-const pedidoService = new PedidoService(produtoRepository)
+const pedidoRepository = new PedidoRepository
+const pedidoService = new PedidoService(pedidoRepository, produtoRepository)
 
 const cafe = new Produto("cafe", 5, 1);
 const bolo = new Produto("bolo", 8, 2);
@@ -50,12 +51,12 @@ console.log("Quantidade de produtos: " + produtoRepository.qntdProdutos())
 const torta = new Produto("Torta", 10, 2)
 produtoRepository.salvarProduto(torta)
 
-console.log(produtoRepository.listarProd(2)) // retornará bolo
+console.log(produtoRepository.buscarPorId(2)) // retornará bolo
 
 // HU7
 console.log(produtoRepository.listarProdutos())
 console.log(produtoRepository.toString())
-console.log(produtoRepository.listarProd(99))
+console.log(produtoRepository.buscarPorId(99))
 
 // HU8
 // Como atendente, quero registrar pedidos informando o código dos produtos, e consultar um pedido pelo seu

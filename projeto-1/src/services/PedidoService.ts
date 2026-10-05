@@ -3,16 +3,19 @@ import { Produto } from "../entities/Produto.ts";
 import { Pedido } from "../entities/Pedido.ts";
 import { ItemPedido } from "../entities/ItemPedido.ts";
 import { PedidoRepository } from "../repositories/PedidoRepository.ts";
+import { ProdutoRepository } from "../repositories/ProdutoRepository.ts";
 
 export class PedidoService {
     private pedidoRepository: PedidoRepository
+    private produtoRepository: ProdutoRepository
     
-    constructor(pedidoRepository: PedidoRepository){
+    constructor(pedidoRepository: PedidoRepository, produtoRepository: ProdutoRepository){
         this.pedidoRepository = pedidoRepository
+        this.produtoRepository = produtoRepository
     }
 
     criarPedido(cliente: Cliente, idPedido:number): Pedido {
-        pedido = new Pedido(cliente, idPedido); 
+        let pedido = new Pedido(cliente, idPedido); 
         this.pedidoRepository.adicionar(pedido);
         return pedido
     }
@@ -22,37 +25,39 @@ export class PedidoService {
         codProd: number,
         quantidade: number,
     ): void {   
-        const item = new ItemPedido(codProd, quantidade)
-        pedido.adicionarItem(item);
+        let produto = this.produtoRepository.buscarPorId(codProd);
+        let pedido = this.pedidoRepository.buscarPorId(idPedido);
+        let item = new ItemPedido(produto, quantidade)
+        pedido.adicionarItem(item)
+
     }
 
     removerProduto(
-        pedido: Pedido,
-        itemPedido: number
+        idPedido: number,
+        codProd: number
     ): void {
-        pedido.removerItem(itemPedido);
+        let pedido = this.pedidoRepository.buscarPorId(idPedido)
+        pedido.removerItem(codProd);
     }
 
     alterarQuantidade(
-        pedido: Pedido,
-        itemPedido: ItemPedido,
+        idPedido: number,
+        codProd: number,
         novaQuantidade: number
     ): void {
-        pedido.alterarQuantidade(itemPedido, novaQuantidade);
+        let pedido = this.pedidoRepository.buscarPorId(idPedido)
+        pedido.alterarQuantidade(codProd, novaQuantidade);
     }
 
+    finalizarPedido(idPedido: number): void {
+        let pedido = this.pedidoRepository.buscarPorId(idPedido)
+        pedido.finalizar();
+    }
 
-
-
-    // a partir daqui é outra responsabilidade
-
-    // finalizarPedido(pedido: Pedido): void {
-    //     pedido.finalizar();
-    // }
-
-    // cancelarPedido(pedido: Pedido): void {
-    //     pedido.cancelar();
-    // }
+    cancelarPedido(idPedido: number): void {
+        let pedido = this.pedidoRepository.buscarPorId(idPedido)
+        pedido.cancelar();
+    }
 
 
 }

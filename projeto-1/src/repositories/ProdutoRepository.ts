@@ -3,12 +3,12 @@ import { Produto } from "../entities/Produto.ts";
 export class ProdutoRepository{
     
     private _produtos : Produto[] = []
-        
+
     public listarProdutos(){return this._produtos}
 
     public qntdProdutos(){return this._produtos.length}
     
-    public listarProd(codProd: number){
+    public buscarPorId(codProd: number){
         
         let prod: Produto|undefined = this._produtos.find(prod => prod.codProd == codProd)
         if(!prod){

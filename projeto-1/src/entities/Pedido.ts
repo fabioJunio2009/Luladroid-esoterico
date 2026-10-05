@@ -37,8 +37,8 @@ export class Pedido{
         this._itemP.splice(index_itemP,1)
     }   
     
-    alterarQuantidade(item:ItemPedido, quantidadeNova:number){
-        let item_ItemP: ItemPedido | undefined = this._itemP.find(x => x.produto.codProd == item.produto.codProd)
+    alterarQuantidade(codProd:number, quantidadeNova:number){
+        let item_ItemP: ItemPedido | undefined = this._itemP.find(x => x.produto.codProd == codProd)
 
         if(!item_ItemP){
             throw new Error("Não existe esse item-pedido");
