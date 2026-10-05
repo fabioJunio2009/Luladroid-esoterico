@@ -59,33 +59,23 @@ console.log(produtoRepository.toString())
 console.log(produtoRepository.buscarPorId(99))
 
 // HU8
-// Como atendente, quero registrar pedidos informando o código dos produtos, e consultar um pedido pelo seu
-// número.
-// Ao ser criado, todo pedido deve receber um número, único e sequencial, começando em 1.
-// O pedido criado deve ficar registrado no sistema, podendo ser consultado depois pelo seu número.
-// As operações sobre um pedido existente passam a ser solicitadas pelo número do pedido e pelo código do
-// produto:
-// adicionar produto → número do pedido, código do produto, quantidade
-// remover produto → número do pedido, código do produto
-// alterar quantidade → número do pedido, código do produto, nova quantidade
-// finalizar pedido → número do pedido
-// cancelar pedido → número do pedido
-// Se o pedido ou o produto informado não existir, a operação deve ser rejeitada e nenhum pedido deve ser alterado.
-// As regras das histórias HU01 a HU05 continuam valendo.
+const Ana = new Cliente("Ana")
+const pedido1 = pedidoService.criarPedido(Ana, 1);
 
-// 1. Cadastre os quatro produtos do cardápio.
-// 2. Crie um pedido para a cliente Ana e apresente o seu número: 1.
-// 3. Adicione ao pedido 1: 2 unidades do produto 1 (Café) e 1 unidade do produto 2 (Bolo).
-// 4. Tente adicionar o produto 99 ao pedido 1. A operação deve ser rejeitada.
-// 5. Consulte o pedido pelo número 1 e apresente seus itens e total:
-// Total do pedido: R$ 18,00
-// 6. Consulte o pedido de número 50. A consulta deve ser rejeitada (pedido não encontrado).
-// 7. Tente adicionar um produto ao pedido 50. A operação deve ser rejeitada.
-// Depois de concluir a HU08, adapte as demonstrações da HU01 a HU05 para a nova forma de trabalhar e verifique
-// se os resultados continuam os mesmos.
+// adicionando cafe
+pedidoService.adicionarProduto(1, 1, 2)
+// adicionando bolo
+pedidoService.adicionarProduto(1, 2, 1)
+// Tentando adicionar o produto 99 ao pedido 1
+pedidoService.adicionarProduto(1, 99, 67)
 
-const pedido = pedidoService.criarPedido(cliente, 1);
 
+//consulta:
+pedidoService.buscarPedidoPorId(1)
+pedidoService.buscarPedidoPorId(50)
+
+// adicionando produto ao numero 50:
+pedidoService.adicionarProduto(50, 1, 13) // 13 é mera coincidência
 
 
 
