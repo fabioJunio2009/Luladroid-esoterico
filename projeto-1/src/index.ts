@@ -79,13 +79,13 @@ pedidoService.adicionarProduto(1, 1, 1);
 pedidoService.adicionarProduto(1, 2, 1);
 pedidoService.finalizarPedido(1);
 
-const bruno = new Cliente("bruno", 2);
+const bruno = new Cliente("bruno");
 const pedido2 = pedidoService.criarPedido(bruno, 2);
 pedidoRepository.adicionar(pedido2);
 
 pedidoService.adicionarProduto(2, 3, 2);
 
-const carla = new Cliente("carla", 3);
+const carla = new Cliente("carla");
 const pedido3 = pedidoService.criarPedido(carla, 3);
 pedidoRepository.adicionar(pedido3);
 
@@ -93,7 +93,7 @@ pedidoService.adicionarProduto(3, 4, 1);
 pedidoService.cancelarPedido(3);
 
 const diego = new Cliente("diego");
-const pedido4 = pedidoService.criarPedido(diego);
+const pedido4 = pedidoService.criarPedido(diego, 4);
 pedidoRepository.adicionar(pedido4);
 
 pedidoService.adicionarProduto(4, 1, 2);
