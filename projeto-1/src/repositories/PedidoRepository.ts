@@ -15,9 +15,6 @@ export class PedidoRepository{
 
     };
     public buscarPorId(Idpedido:number){
-        if(!Idpedido){
-            throw new Error("Tipo de id inválido")
-        }
         let pedido : Pedido | undefined = this.pedidos.find(ped => ped.idPedido === Idpedido)
         if(!pedido){
             throw new Error("Não existe esse pedidio")

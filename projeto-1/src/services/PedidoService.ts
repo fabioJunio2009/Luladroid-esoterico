@@ -76,23 +76,10 @@ export class PedidoService {
 
 
     resumoVendas() {
-    let pedidos = this.pedidoRepository.listarSituacao("finalizado");
 
-    let qtd  = pedidos.length;
-    let total = 0;
-    for (let pedido of pedidos) {
-        total = total + pedido.calcularTotal();
+        let pedidos = this.pedidoRepository.listarSituacao("finalizado")
+        let total = pedidos.reduce((soma, pedido) =>  soma + pedido.calcularTotal(), 0);
+        return total     
     }
-    let oi = 0;
-    if (qtd > 0) {
-        oi = total / qtd;
-    }
-    return {
-        quantidade: qtd,
-        total: total,
-        oi: oi
-    };
-}
-}
 
-
+}
