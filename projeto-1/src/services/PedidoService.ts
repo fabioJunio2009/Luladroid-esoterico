@@ -58,11 +58,30 @@ export class PedidoService {
         let pedido = this.pedidoRepository.buscarPorId(idPedido)
         pedido.cancelar();
     }
-    public buscarPedidoPorId(idPedido: number){
-        return this.pedidoRepository.buscarPorId(idPedido)
-    }
-    public buscarPedidos(){
-        return this.pedidoRepository.pedidos()
+
+    listarSituacao(situacao:string):any{
+        return this.pedidoRepository.listarSituacao(situacao)
     }
 
+
+    resumoVendas() {
+    let pedidos = this.pedidoRepository.listarSituacao("finalizado");
+
+    let qtd  = pedidos.length;
+    let total = 0;
+    for (let pedido of pedidos) {
+        total = total + pedido.calcularTotal();
+    }
+    let oi = 0;
+    if (qtd > 0) {
+        oi = total / qtd;
+    }
+    return {
+        quantidade: qtd,
+        total: total,
+        oi: oi
+    };
 }
+}
+
+

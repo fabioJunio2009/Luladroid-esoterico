@@ -65,4 +65,8 @@ export class Pedido{
             this._situacao = "cancelado";
         }
     }
+    
+    public get situacao():any{
+        return this._situacao
+    }
 }
