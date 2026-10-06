@@ -9,10 +9,6 @@ import {PedidoRepository} from "./repositories/PedidoRepository.ts"
 // A partir daqui é da história HU1 até HU5
 
 // const pedidoService = new PedidoService();
-
-const PedidoRepository = new pedidoRepository();
-const pedidoService = new PedidoService(PedidoRepository);
-
 // const cafe = new Produto("cafe", 5);
 // const bolo = new Produto("bolo", 8);
 // const suco = new Produto("suco", 6);
@@ -85,20 +81,20 @@ pedidoService.finalizarPedido(1);
 
 const bruno = new Cliente("bruno", 2);
 const pedido2 = pedidoService.criarPedido(bruno, 2);
-PedidoRepository.adicionar(pedido2);
+pedidoRepository.adicionar(pedido2);
 
 pedidoService.adicionarProduto(2, 3, 2);
 
 const carla = new Cliente("carla", 3);
 const pedido3 = pedidoService.criarPedido(carla, 3);
-PedidoRepository.adicionar(pedido3);
+pedidoRepository.adicionar(pedido3);
 
 pedidoService.adicionarProduto(3, 4, 1);
 pedidoService.cancelarPedido(3);
 
 const diego = new Cliente("diego");
 const pedido4 = pedidoService.criarPedido(diego);
-PedidoRepository.adicionar(pedido4);
+pedidoRepository.adicionar(pedido4);
 
 pedidoService.adicionarProduto(4, 1, 2);
 pedidoService.adicionarProduto(4, 4, 1);
