@@ -5,18 +5,22 @@ export class Pedido{
     private _cliente: Cliente;
     private _itemP: ItemPedido[];
     private _situacao: string;
-    constructor(cliente:Cliente){
+    private _idPedido: number;
+    
+    constructor(cliente:Cliente, idPedido: number){
         this._cliente = cliente;
         this._itemP = []
         this._situacao = "aberto";
+        this._idPedido = idPedido
     }
+    public get idPedido(){return this._idPedido}
 
-    adicionarItem(item:ItemPedido){
+    public adicionarItem(item:ItemPedido){
         if(!item){
             return "Não há item para o pedido"
         }
         
-        let repeticao = this._itemP.find(itemPedido => itemPedido.produto.nome == item.produto.nome)
+        let repeticao = this._itemP.find(itemPedido => itemPedido.produto.codProd == item.produto.codProd)
 
         if(repeticao){
             throw new Error("Já existe esse item no pedido")
@@ -26,16 +30,16 @@ export class Pedido{
 
     }
 
-    removerItem(item:string){
-        let index_itemP: number = this._itemP.findIndex(x => x.produto.nome == item.produto.nome)
+    removerItem(codProd:number){
+        let index_itemP: number = this._itemP.findIndex(x => x.produto.codProd == codProd)
         if (index_itemP === -1){
             throw new Error("Nâo existe este item")
         }
         this._itemP.splice(index_itemP,1)
     }   
     
-    alterarQuantidade(item:ItemPedido, quantidadeNova:number){
-        let item_ItemP: ItemPedido | undefined = this._itemP.find(x => x.produto.nome == item.produto.nome)
+    alterarQuantidade(codProd:number, quantidadeNova:number){
+        let item_ItemP: ItemPedido | undefined = this._itemP.find(x => x.produto.codProd == codProd)
 
         if(!item_ItemP){
             throw new Error("Não existe esse item-pedido");
