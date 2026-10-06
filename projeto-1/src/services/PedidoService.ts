@@ -13,6 +13,17 @@ export class PedidoService {
         this.pedidoRepository = pedidoRepository
         this.produtoRepository = produtoRepository
     }
+    public buscarPedidoPorId(idPedido: number){
+        if(!idPedido){
+            throw new Error("Tipagem errada ou alguma coisa assim")
+        }
+        let existIdPedido: Pedido | undefined = this.pedidoRepository.buscarPorId(idPedido)
+        if(!existIdPedido){
+            throw new Error("Não existe esse pedido")
+        }
+        return existIdPedido
+
+    }
 
     public criarPedido(cliente: Cliente, idPedido:number): Pedido {
         let pedido = new Pedido(cliente, idPedido); 
