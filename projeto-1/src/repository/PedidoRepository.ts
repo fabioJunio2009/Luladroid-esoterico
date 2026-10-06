@@ -6,7 +6,7 @@ export class pedidoRepository{
         this.pedidos.push(pedido)
     };
 
-   public get Pedidos():any{
+   public get pedidos():any{
         return(this.pedidos)
 
     };
