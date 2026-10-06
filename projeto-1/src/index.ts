@@ -20,33 +20,33 @@ const cliente = new Cliente("oi")
 
 
 const ana = new Cliente("ana");
-const pedido1 = pedidoService.criarPedido(ana);
-
-pedidoService.adicionarProduto(pedido1, cafe, 1);
-pedidoService.adicionarProduto(pedido1, bolo, 1);
-pedidoService.finalizarPedido(pedido1);
+const pedido1 = pedidoService.criarPedido(ana, 1);
 PedidoRepository.adicionar(pedido1);
 
-const bruno = new Cliente("bruno");
-const pedido2 = pedidoService.criarPedido(bruno);
+pedidoService.adicionarProduto(1, 1, 1);
+pedidoService.adicionarProduto(1, 2, 1);
+pedidoService.finalizarPedido(1);
 
-pedidoService.adicionarProduto(pedido2, suco, 2);
+const bruno = new Cliente("bruno", 2);
+const pedido2 = pedidoService.criarPedido(bruno, 2);
 PedidoRepository.adicionar(pedido2);
 
-const carla = new Cliente("carla");
-const pedido3 = pedidoService.criarPedido(carla);
+pedidoService.adicionarProduto(2, 3, 2);
 
-pedidoService.adicionarProduto(pedido3, sanduiche, 1);
-pedidoService.cancelarPedido(pedido3);
+const carla = new Cliente("carla", 3);
+const pedido3 = pedidoService.criarPedido(carla, 3);
 PedidoRepository.adicionar(pedido3);
+
+pedidoService.adicionarProduto(3, 4, 1);
+pedidoService.cancelarPedido(3);
 
 const diego = new Cliente("diego");
 const pedido4 = pedidoService.criarPedido(diego);
-
-pedidoService.adicionarProduto(pedido4, cafe, 2);
-pedidoService.adicionarProduto(pedido4, sanduiche, 1);
-pedidoService.finalizarPedido(pedido4);
 PedidoRepository.adicionar(pedido4);
+
+pedidoService.adicionarProduto(4, 1, 2);
+pedidoService.adicionarProduto(4, 4, 1);
+pedidoService.finalizarPedido(4);
 
 
 console.log("aberto", pedidoService.listarSituacao("aberto"));
