@@ -3,6 +3,10 @@ export class pedidoRepository{
     private _pedidos: Pedido[] = [];
     
     adicionar(pedido: Pedido): void{
+        let existIdPedido = this.pedidos.some( pedidoRepo => pedidoRepo.idPedido === pedido.idPedido)
+        if(existIdPedido){
+            throw new Error("Já existe um pedido com este id")
+        }
         this._pedidos.push(pedido)
     };
 
@@ -10,7 +14,7 @@ export class pedidoRepository{
         return(this._pedidos)
 
     };
-    public buscarPorId(Idpedido){
+    public buscarPorId(Idpedido:number){
         if(!pedido){
             throw new Error("Tipo de id inválido")
         }
