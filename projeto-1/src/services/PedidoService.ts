@@ -14,13 +14,13 @@ export class PedidoService {
         this.produtoRepository = produtoRepository
     }
 
-    criarPedido(cliente: Cliente, idPedido:number): Pedido {
+    public criarPedido(cliente: Cliente, idPedido:number): Pedido {
         let pedido = new Pedido(cliente, idPedido); 
         this.pedidoRepository.adicionar(pedido);
         return pedido
     }
 
-    adicionarProduto(
+    public adicionarProduto(
         idPedido: number,
         codProd: number,
         quantidade: number,
@@ -32,7 +32,7 @@ export class PedidoService {
 
     }
 
-    removerProduto(
+    public removerProduto(
         idPedido: number,
         codProd: number
     ): void {
@@ -40,7 +40,7 @@ export class PedidoService {
         pedido.removerItem(codProd);
     }
 
-    alterarQuantidade(
+    public alterarQuantidade(
         idPedido: number,
         codProd: number,
         novaQuantidade: number
@@ -49,12 +49,12 @@ export class PedidoService {
         pedido.alterarQuantidade(codProd, novaQuantidade);
     }
 
-    finalizarPedido(idPedido: number): void {
+    public finalizarPedido(idPedido: number): void {
         let pedido = this.pedidoRepository.buscarPorId(idPedido)
         pedido.finalizar();
     }
 
-    cancelarPedido(idPedido: number): void {
+    public cancelarPedido(idPedido: number): void {
         let pedido = this.pedidoRepository.buscarPorId(idPedido)
         pedido.cancelar();
     }
@@ -62,7 +62,7 @@ export class PedidoService {
         return this.pedidoRepository.buscarPorId(idPedido)
     }
     public buscarPedidos(){
-        return this.pedidoRepository.buscarPedidos()
+        return this.pedidoRepository.pedidos()
     }
 
 }

@@ -63,7 +63,7 @@ const Ana = new Cliente("Ana")
 const pedido1 = pedidoService.criarPedido(Ana, 1);
 
 // adicionando cafe
-pedidoService.adicionarProduto(1, 1, 2)
+pedidoService.adicionarProduto(1,1,2)
 // adicionando bolo
 pedidoService.adicionarProduto(1, 2, 1)
 // Tentando adicionar o produto 99 ao pedido 1

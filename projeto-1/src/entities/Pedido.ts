@@ -13,8 +13,9 @@ export class Pedido{
         this._situacao = "aberto";
         this._idPedido = idPedido
     }
+    public get idPedido(){return this._idPedido}
 
-    adicionarItem(item:ItemPedido){
+    public adicionarItem(item:ItemPedido){
         if(!item){
             return "Não há item para o pedido"
         }
